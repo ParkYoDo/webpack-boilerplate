@@ -8,13 +8,6 @@ const ProgressPlugin = require('progress-webpack-plugin');
 module.exports = {
   // Entry : 웹팩의 최초 진입점인 자바스크립트 파일
   entry: `${path.resolve(__dirname, '../src')}/index.tsx`,
-  // Output : 빌드 시 적용되는 속성에 대한 설정
-  output: {
-    publicPath: './', // 브라우저에서 참조될 때 출력 디렉터리의 공용 URL을 지정
-    path: path.resolve(__dirname, '../dist'), // 번들된 파일을 생성할 경로
-    filename: '[name].[contenthash].js', // 생성될 파일 이름 hash, contenthash, chunkhash
-    clean: true, // path에 다른 파일들이 있다면, 삭제하고 새로운 파일을 생성
-  },
   // Resolve : 모듈을 해석하는 방식을 변경
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.json'], // 설정된 확장자에 해당하는 파일은 import 시 파일 확장자를 명시하지 않아도 된다.
