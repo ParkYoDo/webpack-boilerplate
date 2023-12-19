@@ -10,6 +10,10 @@ module.exports = merge(common, {
   mode: 'development',
   // DevTool : type of source map
   devtool: 'eval-cheap-module-source-map',
+  output: {
+    publicPath: '/', // 브라우저에서 참조될 때 출력 디렉터리의 공용 URL을 지정
+    filename: '[name].[contenthash].js', // 생성될 파일 이름 hash, contenthash, chunkhash
+  },
   // DevServer : 웹팩 개발 서버에 대한 설정
   devServer: {
     open: true, // dev server 구동 후 브라우저 열기
