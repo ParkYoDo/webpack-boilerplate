@@ -13,13 +13,14 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.json'], // 설정된 확장자에 해당하는 파일은 import 시 파일 확장자를 명시하지 않아도 된다.
     modules: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../node_modules')], // 목록의 앞에 있는 경로부터 모듈을 탐색한다.
     alias: {
-      '@': path.resolve(__dirname, '../src/'), // 절대경로
+      // 절대경로
+      // '@pages': path.resolve(__dirname, '../src/pages/'),
     },
   },
   // Module
   module: {
     rules: [
-      // 사진 처리
+      // 이미지 로더
       {
         test: /\.(png|jpe?g|gif|ico|webp)$/i,
         type: 'asset',
@@ -27,10 +28,22 @@ module.exports = {
           filename: 'assets/[name][hash][ext]',
         },
       },
-      // svg 처리
+      // svg 로더
       {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
+      },
+      // 웹폰트 로더
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/fonts/[name].[hash:8].[ext]',
+            },
+          },
+        ],
       },
     ],
   },
