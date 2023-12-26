@@ -17,7 +17,7 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@": ["src/*"]
     }
   },
   "include": ["src"] // src 하위 모든 파일을 타입스크립트로 설정
