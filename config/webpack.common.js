@@ -5,6 +5,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressPlugin = require('progress-webpack-plugin');
 // const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
+dotenv.config({ path: path.join(__dirname, '../.env') });
+
 module.exports = {
   // Entry : 웹팩의 최초 진입점인 자바스크립트 파일
   entry: path.resolve(__dirname, '../src/index.tsx'),
@@ -66,4 +68,18 @@ module.exports = {
     new ProgressPlugin(true),
     // new BundleAnalyzerPlugin(),
   ],
+  // DevServer : 웹팩 개발 서버에 대한 설정
+  devServer: {
+    open: true, // dev server 구동 후 브라우저 열기
+    hot: true, // webpack의 HMR(핫모듈교체) 기능 활성화 : 전체 페이지 새로고침 없이 변경 사항 확인
+    compress: true, // 모든 항목에 대해 gzip압축 사용
+    port: 8081, // 접속 포트 설정
+    historyApiFallback: true, // historyApi 사용 SPA에서 404 응답을 index.html로 redirect
+    liveReload: true, // 변경된 내용 자동 새로고침 여부 설정
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
 };

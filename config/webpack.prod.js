@@ -59,6 +59,41 @@ module.exports = merge(common, {
       },
       // Css-Loader
       {
+        test: /\.(js|jsx|ts|tsx)$/, // 모듈 해석에 사용할 확장자 설정
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheCompression: false,
+            cacheDirectory: true,
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  useBuiltIns: 'usage',
+                  corejs: {
+                    version: 3,
+                  },
+                },
+              ],
+              ['@babel/preset-react', { runtime: 'automatic' }],
+              '@babel/preset-typescript',
+            ],
+            plugins: [
+              [
+                'babel-plugin-styled-components',
+                {
+                  displayName: false,
+                  minify: true,
+                  transpileTemplateLiterals: true,
+                  pure: true,
+                },
+              ],
+            ],
+          },
+        },
+      },
+      {
         test: /\.(sa|sc|c)ss$/i, // .sass, .scss, css에 대해
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'], // MiniCssExtractPlugin.loader, css-loader, sass-loader를 차례로 사용하여 변환
       },
@@ -69,7 +104,7 @@ module.exports = merge(common, {
     // 빌드 시 기존 파일 정리를 위한 플러그인
     new CleanWebpackPlugin({
       // dist 폴더 내부의 모든 파일 삭제 설정
-      cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'dist/**/*')],
+      cleanOnceBeforeBuildPatterns: ['dist/*'],
     }),
     // CSS 파일 추출을 위한 플러그인
     new MiniCssExtractPlugin({
@@ -106,10 +141,5 @@ module.exports = merge(common, {
     splitChunks: {
       chunks: 'all',
     },
-  },
-  performance: {
-    hints: false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
   },
 });
