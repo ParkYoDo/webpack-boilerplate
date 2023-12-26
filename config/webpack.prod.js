@@ -94,6 +94,41 @@ module.exports = merge(common, {
         },
       },
       {
+        test: /\.(js|jsx|ts|tsx)$/, // 모듈 해석에 사용할 확장자 설정
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheCompression: false,
+            cacheDirectory: true,
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  useBuiltIns: 'usage',
+                  corejs: {
+                    version: 3,
+                  },
+                },
+              ],
+              ['@babel/preset-react', { runtime: 'automatic' }],
+              '@babel/preset-typescript',
+            ],
+            plugins: [
+              [
+                'babel-plugin-styled-components',
+                {
+                  displayName: false,
+                  minify: true,
+                  transpileTemplateLiterals: true,
+                  pure: true,
+                },
+              ],
+            ],
+          },
+        },
+      },
+      {
         test: /\.(sa|sc|c)ss$/i, // .sass, .scss, css에 대해
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'], // MiniCssExtractPlugin.loader, css-loader, sass-loader를 차례로 사용하여 변환
       },
