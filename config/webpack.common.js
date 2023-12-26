@@ -27,16 +27,6 @@ module.exports = {
           filename: 'assets/[name][hash][ext]',
         },
       },
-      // font 처리
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-      },
-      // xml 처리
-      {
-        test: /\.xml$/i,
-        use: ['xml-loader'],
-      },
       // svg 처리
       {
         test: /\.svg$/,
@@ -58,7 +48,7 @@ module.exports = {
       patterns: [
         {
           from: './public',
-          to: '../../',
+          to: './',
           globOptions: {
             ignore: ['**/index.html'], // 특정 파일 제외 설정
           },

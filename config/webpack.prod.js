@@ -17,11 +17,12 @@ module.exports = merge(common, {
   devtool: false,
   // Output : 빌드 시 적용되는 속성에 대한 설정
   output: {
-    publicPath: './static/js', // 브라우저에서 참조될 때 출력 디렉터리의 공용 URL을 지정
-    path: path.resolve(__dirname, '../build/static/js'), // 번들된 파일을 생성할 경로
+    publicPath: './', // 브라우저에서 참조될 때 출력 디렉터리의 공용 URL을 지정
+    path: path.resolve(__dirname, '../dist'), // 번들된 파일을 생성할 경로
     filename: '[name].[chunkhash].js', // 생성될 파일 이름 hash, contenthash, chunkhash / css in js는 chunkhash해도 무관 아니면 contenthash
     clean: true, // path에 다른 파일들이 있다면, 삭제하고 새로운 파일을 생성
   },
+  target: ['web', 'es5'],
   // 모듈 설정
   module: {
     rules: [
@@ -69,12 +70,17 @@ module.exports = merge(common, {
     // 빌드 시 기존 파일 정리를 위한 플러그인
     new CleanWebpackPlugin({
       // build 폴더 내부의 모든 파일 삭제 설정
-      cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'build/**/*')],
+      cleanOnceBeforeBuildPatterns: ['**/*', path.resolve(process.cwd(), 'dist/**/*')],
     }),
     // CSS 파일 추출을 위한 플러그인
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css', // 번들된 CSS 파일의 이름 설정
       chunkFilename: 'css/[id].[contenthash:8].css', // 청크 파일의 이름 설정
+    }),
+    // 환경변수
+    new webpack.DefinePlugin({
+      // 'process.env.PUBLIC_KEY': JSON.stringify(process.env.PUBLIC_KEY),
+      'process.env.REACT_APP_ENV': 'production',
     }),
   ],
   // 최적화 설정
