@@ -1,6 +1,7 @@
+const webpack = require('webpack');
+const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
-const path = require('path');
 
 module.exports = merge(common, {
   // Development Mode
@@ -32,10 +33,10 @@ module.exports = merge(common, {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
-    plugins: [
-      new webpack.DefinePlugin({
-        // 'process.env.BASE_URL': JSON.stringify(process.env.DEV_BASE_URL),
-      }),
-    ],
+    // plugins: [
+    //   webpack.DefinePlugin({
+    //     // 'process.env.BASE_URL': JSON.stringify(process.env.DEV_BASE_URL),
+    //   }),
+    // ],
   },
 });

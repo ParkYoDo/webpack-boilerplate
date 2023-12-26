@@ -10,8 +10,7 @@ module.exports = merge(common, {
   // Production Mode
   mode: 'production',
   // 소스 맵 설정
-  devtool: false,
-  target: ['web', 'es5'],
+  devtool: 'inline-source-map',
   // 모듈 설정
   module: {
     rules: [
