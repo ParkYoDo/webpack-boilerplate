@@ -25,6 +25,7 @@ module.exports = merge(common, {
     historyApiFallback: true, // historyApi 사용 SPA에서 404 응답을 index.html로 redirect
     liveReload: true, // 변경된 내용 자동 새로고침 여부 설정
   },
+  // Module
   module: {
     rules: [
       // Babel-Loader

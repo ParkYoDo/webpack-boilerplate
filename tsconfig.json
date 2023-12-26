@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./dist", // 컴파일 후 생성되는 자바스크립트 파일이 저장될 디렉토리명
+    "outDir": "./build", // 컴파일 후 생성되는 자바스크립트 파일이 저장될 디렉토리명
     "target": "es5", // 타입스크립트 파일을 컴하일 했을때 생성되는 자바스크립트의 버전 ex) 'es3', 'es5', 'es2015', 'es2016', 'es2017','es2018', 'esnext'
     "module": "esnext", // 어떤 방식으로 module을 내보내고 불러올지. 'commonjs' -> require / 'es2015', 'esnext' -> import export / 'amd', 'system'
     "jsx": "react-jsx", // tsx 파일을 사용하므로 react가 아닌 react-jsx로 설정
