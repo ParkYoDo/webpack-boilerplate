@@ -1,5 +1,5 @@
 const App = () => {
-  return <div>webpack-boilerplate</div>;
+  return <div>Blog</div>;
 };
 
 export default App;
