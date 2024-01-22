@@ -11,7 +11,6 @@ module.exports = {
   // Resolve : 모듈을 해석하는 방식을 변경
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.json'], // 설정된 확장자에 해당하는 파일은 import 시 파일 확장자를 명시하지 않아도 된다.
-    modules: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../node_modules')], // 목록의 앞에 있는 경로부터 모듈을 탐색한다.
     alias: {
       // 절대경로
       // '@pages': path.resolve(__dirname, '../src/pages/'),
