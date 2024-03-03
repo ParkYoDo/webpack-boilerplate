@@ -4,7 +4,7 @@ const path = require('path');
 const common = require('./webpack.common');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: path.join(__dirname, '../.env') });
+dotenv.config({ path: path.join(__dirname, '../.env.development') });
 
 module.exports = merge(common, {
   // Development Mode
@@ -52,9 +52,7 @@ module.exports = merge(common, {
   },
   plugins: [
     // 환경변수
-    new webpack.DefinePlugin({
-      'process.env.REACT_APP_ENV': JSON.stringify('development'),
-    }),
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(process.env) }),
   ],
   cache: {
     type: 'filesystem',

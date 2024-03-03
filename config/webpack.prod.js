@@ -78,10 +78,7 @@ module.exports = merge(common, {
       chunkFilename: 'css/[id].[contenthash:8].css', // 청크 파일의 이름 설정
     }),
     // 환경변수
-    new webpack.DefinePlugin({
-      // 'process.env.PUBLIC_KEY': JSON.stringify(process.env.PUBLIC_KEY),
-      'process.env.REACT_APP_ENV': 'production',
-    }),
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(process.env) }),
   ],
   // 최적화 설정
   optimization: {
