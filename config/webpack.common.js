@@ -60,7 +60,6 @@ module.exports = {
       patterns: [
         {
           from: './public',
-          to: './',
           globOptions: {
             ignore: ['**/index.html'], // 특정 파일 제외 설정
           },
